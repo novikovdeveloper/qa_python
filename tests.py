@@ -37,19 +37,19 @@ class TestBooksCollector:
         not_in_lst = BooksCollector()
         not_in_lst.add_new_book('Гордость и предубеждение и зомби')
         not_in_lst.set_book_rating('Бойцовский клуб', 9)
-        assert not_in_lst.books_rating == {'Гордость и предубеждение и зомби': 1}
+        assert not_in_lst.get_books_rating() == {'Гордость и предубеждение и зомби': 1}
 
     def test_cant_rate_less_one(self):
         books_rate = BooksCollector()
         books_rate.add_new_book('Гордость и предубеждение и зомби')
         books_rate.set_book_rating('Гордость и предубеждение и зомби', 0)
-        assert books_rate.get_books_rating != {'Гордость и предубеждение и зомби', 0}
+        assert books_rate.get_books_rating() != {'Гордость и предубеждение и зомби', 0}
 
     def test_cant_rate_more_ten(self):
         books_rate = BooksCollector()
         books_rate.add_new_book('Гордость и предубеждение и зомби')
         books_rate.set_book_rating('Гордость и предубеждение и зомби', 13)
-        assert books_rate.books_rating != {'Гордость и предубеждение и зомби', 13}
+        assert books_rate.get_books_rating != {'Гордость и предубеждение и зомби', 13}
 
     def test_absent_book_has_no_rating(self):
         absent_book = BooksCollector()
@@ -65,9 +65,9 @@ class TestBooksCollector:
 
     def test_absent_book_has_no_favorites(self):
         no_rate_book = BooksCollector()
-        no_rate_book.add_new_book('Гордость и предубеждение и зомби')
-        without_rating = no_rate_book.get_book_rating('Бойцовский клуб')
-        assert without_rating is None
+        no_rate_book.add_book_in_favorites('Гордость и предубеждение и зомби')
+        assert no_rate_book.favorites == []
+        assert no_rate_book.books_rating == {}
 
     def test_remove_book_from_favorites(self):
         del_book = BooksCollector()
@@ -90,5 +90,5 @@ class TestBooksCollector:
         set_rating = BooksCollector()
         set_rating.add_new_book('Гордость и предубеждение и зомби')
         set_rating.set_book_rating('Гордость и предубеждение и зомби', 4)
-        assert set_rating.books_rating == {'Гордость и предубеждение и зомби': 4}
+        assert set_rating.get_books_rating() == {'Гордость и предубеждение и зомби': 4}
 
