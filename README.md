@@ -17,3 +17,7 @@
 Нельзя добавить книгу в избранное, если её нет в словаре books_rating - test_absent_book_has_no_favorites
 
 Проверка удаления книги из избранного - test_remove_book_from_favorites
+
+Проверка получения книги с определенным рейтингом - test_get_books_with_specific_rating 
+
+Проверка присваивания книге определенного рейтинга - test_set_book_rating(

@@ -4,25 +4,51 @@ from main import BooksCollector
 
 
 # создаем экземпляр (объект) класса BooksCollector
-@pytest.fixture()
+@pytest.fixture(scope='function')
 def collector():
     collector = BooksCollector()
     return collector
 
 
-# добавление книги в экземпляр созданного класса
 @pytest.fixture()
-def book_zombie(collector):
+def book_of_zombie():
+    return 'Гордость и предубеждение и зомби'
+
+
+@pytest.fixture()
+def book_of_cat():
+    return 'Что делать, если ваш кот хочет вас убить'
+
+
+@pytest.fixture()
+def book_of_fight():
+    return 'Бойцовский клуб'
+
+
+@pytest.fixture()
+def book_of_war():
+    return 'Искусство войны'
+
+
+@pytest.fixture()
+def add_book_of_war(collector):
+    collector.add_new_book('Искусство войны')
+    return add_book_of_war
+
+
+@pytest.fixture()
+def add_book_of_zombie(collector):
     collector.add_new_book('Гордость и предубеждение и зомби')
+    return add_book_of_zombie
 
 
-# добавление ещё одной книги в экземпляр созданного класса
 @pytest.fixture()
-def book_cat(collector):
+def add_book_of_cat(collector):
     collector.add_new_book('Что делать, если ваш кот хочет вас убить')
+    return add_book_of_cat
 
 
-# добавление ещё одной книги в экземпляр созданного класса
 @pytest.fixture()
-def book_fight(collector):
-    collector.add_new_book('Бойцовкий клуб')
+def add_book_of_fight(collector):
+    collector.add_new_book('Бойцовский клуб')
+    return add_book_of_fight
