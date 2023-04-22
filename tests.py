@@ -26,15 +26,12 @@ class TestBooksCollector:
     def test_cant_rate_less_one(self, collector, book_of_zombie):
         collector.add_new_book(book_of_zombie)
         collector.set_book_rating(book_of_zombie, 0)
-        collector.set_book_rating(book_of_zombie, 1)
-        assert collector.get_book_rating(book_of_zombie) == 1, "Рейтинг книги можно установить менее 1"
+        assert collector.get_book_rating(book_of_zombie) == 1,  "Рейтинг книги можно установить менее 1"
 
     def test_cant_rate_more_ten(self, collector, book_of_zombie, book_of_war):
-        collector.add_new_book(book_of_zombie)
         collector.add_new_book(book_of_war)
         collector.set_book_rating(book_of_war, 11)
-        collector.set_book_rating(book_of_zombie, 10)
-        assert len(collector.get_books_with_specific_rating(10)) == 1, "Можно установить рейтинг книги больше 10"
+        assert collector.get_book_rating(book_of_war) != 11, "Можно установить рейтинг книги больше 10"
 
     def test_absent_book_has_no_rating(self, collector, book_of_war):
         collector.add_new_book(book_of_war)
